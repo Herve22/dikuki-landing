@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dikuki.io - Analytics Sans Cookies | Alternative RGPD à Google Analytics</title>
+  <meta name="description" content="Solution d'analytics 100% conforme RGPD, sans cookies, hébergée en Bretagne. L'alternative française à Google Analytics.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    /* HEADER */
+    header {
+      text-align: center;
+      padding: 4rem 0 3rem;
+    }
+    
+    .logo {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    .logo-icon {
+      font-size: 1.2em;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.85; }
+    }
+    
+    .tagline { 
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      font-weight: 300;
+      opacity: 0.95;
+      margin-bottom: 1rem;
+    }
+    
+    .breton-subtitle {
+      font-size: 1rem;
+      opacity: 0.8;
+      font-style: italic;
+    }
+    
+    /* HERO DESCRIPTION */
+    .hero-description {
+      text-align: center;
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 3rem auto;
+      line-height: 1.8;
+      background: rgba(255,255,255,0.1);
+      padding: 2rem;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+    }
+    
+    /* FEATURES GRID */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 4rem 0;
+    }
+    
+    .feature {
+      background: rgba(255,255,255,0.15);
+      padding: 2rem;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, background 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .feature:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.2);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .feature h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .feature p {
+      opacity: 0.9;
+      font-size: 1rem;
+    }
+    
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center;
+      margin: 4rem 0;
+      padding: 3rem 2rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .cta-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+    
+    .beta-badge {
+      display: inline-block;
+      background: rgba(255,193,7,0.9);
+      color: #000;
+      padding: 0.5rem 1.5rem;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* CONTACT FORM */
+    .contact-section {
+      max-width: 600px;
+      margin: 4rem auto;
+      background: rgba(255,255,255,0.15);
+      padding: 3rem;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .contact-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .contact-section p {
+      text-align: center;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    
+    input, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    
+    input::placeholder, textarea::placeholder {
+      color: rgba(255,255,255,0.6);
+    }
+    
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.15);
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    
+    .btn-submit {
+      width: 100%;
+      padding: 1rem;
+      background: white;
+      color: #667eea;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+    
+    .form-message {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      display: none;
+    }
+    
+    .form-message.success {
+      background: rgba(76,175,80,0.3);
+      border: 1px solid rgba(76,175,80,0.5);
+    }
+    
+    .form-message.error {
+      background: rgba(244,67,54,0.3);
+      border: 1px solid rgba(244,67,54,0.5);
+    }
+    
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      opacity: 0.8;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      margin-top: 4rem;
+    }
+    
+    footer p {
+      margin: 0.5rem 0;
+    }
+    
+    footer a {
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      transition: border-color 0.3s;
+    }
+    
+    footer a:hover {
+      border-color: white;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .container { padding: 1rem; }
+      header { padding: 2rem 0; }
+      .hero-description { font-size: 1.1rem; padding: 1.5rem; }
+      .contact-section { padding: 2rem 1.5rem; }
+      .features { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <header>
+      <div class="logo">
+        <span class="logo-icon">🔵</span>
+        <span>Dikuki.io</span>
+      </div>
+      <p class="tagline">Analytics Sans Cookies</p>
+      <p class="breton-subtitle">Analytics hep koukied</p>
+    </header>
+
+    <!-- HERO DESCRIPTION -->
+    <div class="hero-description">
+      <strong>L'alternative française et éthique à Google Analytics.</strong><br>
+      Analysez votre trafic web en toute simplicité, sans compromettre la vie privée de vos visiteurs.
+      <strong>Aucun bandeau cookie requis.</strong>
+    </div>
+
+    <!-- FEATURES -->
+    <section class="features">
+      <div class="feature">
+        <span class="feature-icon">🚫</span>
+        <h3>Zéro Cookie</h3>
+        <p>Aucun cookie déposé, aucune donnée personnelle collectée. Pas de bandeau cookie obligatoire.</p>
+      </div>
+      
+      <div class="feature">
+        <span class="feature-icon">🔒</span>
+        <h3>100% RGPD</h3>
+        <p>Conforme RGPD par design. Données anonymisées et agrégées, impossible de tracer les utilisateurs.</p>
+      </div>
+      
+      <div class="feature">
+        <span class="feature-icon">⚡</span>
+        <h3>Installation Ultra-Rapide</h3>
+        <p>Une ligne de code suffit. Installation en moins de 30 secondes, analytics opérationnels immédiatement.</p>
+      </div>
+      
+      <div class="feature">
+        <span class="feature-icon">🇫🇷</span>
+        <h3>Hébergé en Bretagne</h3>
+        <p>Vos données restent en France. Infrastructure souveraine, indépendante des GAFAM.</p>
+      </div>
+      
+      <div class="feature">
+        <span class="feature-icon">📊</span>
+        <h3>Données Claires</h3>
+        <p>Dashboard simple et intuitif. Visualisez l'essentiel : pages vues, sources, appareils, géolocalisation.</p>
+      </div>
+      
+      <div class="feature">
+        <span class="feature-icon">🌱</span>
+        <h3>Open Source</h3>
+        <p>Code transparent et auditable. Bientôt disponible en open source pour une totale transparence.</p>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+      <span class="beta-badge">⚡ VERSION BETA</span>
+      <h2>Accès Anticipé Disponible</h2>
+      <p>
+        Dikuki.io est actuellement en phase de développement avancé.<br>
+        Rejoignez les premiers utilisateurs et testez la solution en avant-première !
+      </p>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section class="contact-section" id="contact">
+      <h2>💬 Demander un Accès Beta</h2>
+      <p>Intéressé par Dikuki.io ? Contactez-moi pour tester la solution ou en savoir plus.</p>
+      
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name">Nom / Entreprise *</label>
+          <input type="text" id="name" name="name" required placeholder="Votre nom ou entreprise">
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required placeholder="votre@email.com">
+        </div>
+        
+        <div class="form-group">
+          <label for="website">Site Web (optionnel)</label>
+          <input type="url" id="website" name="website" placeholder="https://votresite.com">
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Message *</label>
+          <textarea id="message" name="message" required placeholder="Parlez-moi de votre projet, besoins analytics, ou questions..."></textarea>
+        </div>
+        
+        <button type="submit" class="btn-submit">Envoyer ma demande</button>
+        
+        <div id="formMessage" class="form-message"></div>
+      </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p><strong>Dikuki.io</strong> - Analytics éthique et souverain</p>
+      <p>Créé en Bretagne par <a href="https://hervedequelen.fr" target="_blank">Hervé De Quélen</a></p>
+      
+      <div class="footer-links">
+        <a href="https://dashboard.dikuki.io" target="_blank">📊 Dashboard (demo)</a>
+        <a href="#contact">✉️ Contact</a>
+        <a href="https://github.com" target="_blank">💻 GitHub (bientôt)</a>
+      </div>
+      
+      <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.7;">
+        © 2025 Dikuki.io - Open source bientôt disponible
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // FORM SUBMISSION
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const form = e.target;
+      const submitBtn = form.querySelector('.btn-submit');
+      const messageDiv = document.getElementById('formMessage');
+      const formData = new FormData(form);
+      
+      // Disable submit button
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Envoi en cours...';
+      messageDiv.style.display = 'none';
+      
+      try {
+        const response = await fetch('https://formspree.io/f/xovapwan', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        if (response.ok) {
+          messageDiv.className = 'form-message success';
+          messageDiv.textContent = '✅ Message envoyé avec succès ! Je vous recontacte rapidement.';
+          messageDiv.style.display = 'block';
+          form.reset();
+        } else {
+          throw new Error('Erreur serveur');
+        }
+      } catch (error) {
+        messageDiv.className = 'form-message error';
+        messageDiv.textContent = '❌ Erreur lors de l\'envoi. Réessayez ou contactez-moi à herve@hervedequelen.fr';
+        messageDiv.style.display = 'block';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Envoyer ma demande';
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
